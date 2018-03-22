@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Comptes utilisateur</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="loginAction()">
+        <ion-icon name="lock"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ul>
+      <ion-item *ngFor="let account of currentAccounts">
+        <li>{{account.email}}</li>
+      </ion-item>
+    </ul>
+  </ion-list>
+</ion-content>

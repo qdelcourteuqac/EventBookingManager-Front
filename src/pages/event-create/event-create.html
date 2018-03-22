@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Créer un évènement</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="createEvent()" #registerForm="ngForm">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input type="text" placeholder="Nom" [(ngModel)]="event.name" name="name" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Date de début</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="event.startArt" name="startAt" required></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Date de fin</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="event.endAt" name="endAt"></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="number" placeholder="Nombre de place maximum" [(ngModel)]="event.maxPlaces" name="maxPlaces"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="signup-col">
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Créer</button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
