@@ -17,41 +17,14 @@ export class EventApiProvider {
 
   add(item: Event) {
     return this.api.post('event', item).toPromise();
-      /*
-      .subscribe((res: any) => {
-      this.toastCtrl.create({
-        message: "Event named "+item.name+" has been created !",
-        duration: 3000,
-        position: 'top'
-      }).present();
-    }, (err) => {
-      this.toastCtrl.create({
-        message: err.message,
-        duration: 3000,
-        position: 'top'
-      }).present();
-    });
-    */
   }
 
   retrieve() {
     return this.api.get('event').toPromise();
-    /*
-    subscribe((res: any) => {
-      this.events = res;
-      this.toastCtrl.create({
-        message: "Events were successfully retrieved !",
-        duration: 3000,
-        position: 'top'
-      }).present();
-    }, (err) => {
-      this.toastCtrl.create({
-        message: err.message,
-        duration: 3000,
-        position: 'top'
-      }).present();
-    });
-    */
+  }
+
+  delete(event: Event) {
+    return this.api.delete('event/'+event.id).toPromise();
   }
 
 }

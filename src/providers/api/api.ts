@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Api {
   // to test on external device: update ip address if changed
-  url: string = 'http://192.168.42.56:8080/api';
+  //url: string = 'http://192.168.42.56:8080/api';
   //to test on localhost
-  //url: string = 'http://localhost:8080/api';
+  url: string = 'http://localhost:8080/api';
 
   constructor(public http: HttpClient) {
   }

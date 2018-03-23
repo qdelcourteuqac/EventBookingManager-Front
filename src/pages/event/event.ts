@@ -31,6 +31,17 @@ export class EventPage implements OnInit {
     });
   }
 
+  deleteEvent(event: Event) {
+    this.events.delete(event).then( (res: any) => {
+      this.toastCtrl.create({
+        message: "Event '"+ event.name +"' is successfully deleted !",
+        duration: 3000,
+        position: 'top'
+      }).present();
+      this.refreshEvents();
+    });
+  }
+
   refreshEvents() {
     this.events.retrieve().then((res: any) => {
       this.currentEvents = res;
