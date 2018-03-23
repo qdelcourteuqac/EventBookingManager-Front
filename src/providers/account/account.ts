@@ -21,4 +21,7 @@ export class AccountApiProvider {
     return this.api.post('account/authenticate', {"email":account.email, "password":account.password}).toPromise();
   }
 
+  create(account: Account) {
+    return this.api.post('account', account).toPromise();
+  }
 }
