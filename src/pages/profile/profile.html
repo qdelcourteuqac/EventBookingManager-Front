@@ -6,8 +6,14 @@
 
 </ion-header>
 
-
-<ion-content padding>
-  <h2>Profile de </h2>
-  <p>{{account.person.firstname}} {{account.person.lastname}}</p>
+<ion-content padding *ngIf="account">
+  <h2>
+    {{ account.person.firstname }} {{ account.person.lastname }}
+  </h2>
+  <ul>
+    <li *ngIf="account.email">{{ 'ACCOUNT.EMAIL' | translate }} : {{ account.email }}</li>
+    <li *ngIf="account.person.phoneNumber">{{ 'PERSON.PHONENUMBER' | translate }} : {{ account.person.phoneNumber }}</li>
+    <li *ngIf="account.person.birthdate">{{ 'PERSON.BIRTHDATE' | translate }} : {{ account.person.birthdate }}</li>
+  </ul>
+  <button ion-button (click)="logout()">{{ 'LOGOUT' | translate }}</button>
 </ion-content>

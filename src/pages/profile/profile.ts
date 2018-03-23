@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {App, IonicPage, NavController, ToastController} from 'ionic-angular';
 
 import {Account} from "../../models/account";
-import {AccountApiProvider} from "../../providers/account/account";
+import {AccountStorage} from "../../providers/account/account-storage";
+import {FirstRunPage} from "../pages";
 
 @IonicPage()
 @Component({
@@ -13,12 +14,27 @@ export class ProfilePage implements OnInit {
 
   account: Account;
 
-  constructor(public navCtrl: NavController, public accounts: AccountApiProvider, public navParams: NavParams) {
+  constructor(public app: App,
+              public navCtrl: NavController,
+              public toastCtrl: ToastController,
+              public accountStorage: AccountStorage) {
   }
 
+  ngOnInit() {
+    this.accountStorage.getAccount().then((result: any) => {
+      this.account = result;
+    });
+  }
 
-  ngOnInit(): void {
-    //Récupérer l'utilisateur courant connecté dans le storage
+  logout() {
+    this.accountStorage.logout().then(() => {
+      this.toastCtrl.create({
+        message: "U're now logout!",
+        duration: 3000,
+        position: 'top'
+      }).present();
+      this.app.getRootNav().setRoot(FirstRunPage);
+    });
   }
 
 }

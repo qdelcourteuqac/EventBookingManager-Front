@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { Account } from '../../models/account';
 import { Api } from '../api/api';
-import {ToastController} from "ionic-angular";
 
 @Injectable()
 export class AccountApiProvider {
 
-  constructor(public api: Api, public toastCtrl: ToastController) { }
+  constructor(public api: Api) { }
 
   query(params?: any) {
     return this.api.get('account', params);

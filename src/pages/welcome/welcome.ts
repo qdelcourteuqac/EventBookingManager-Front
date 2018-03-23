@@ -18,8 +18,4 @@ export class WelcomePage {
   signup() {
     this.navCtrl.push('SignupPage');
   }
-
-  goMainPage() {
-    this.navCtrl.push(MainPage);
-  }
 }

@@ -4,7 +4,9 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 
 import {AccountApiProvider} from "../../providers/account/account";
 import {Account} from "../../models/account";
+import {AccountStorage} from "../../providers/account/account-storage";
 import {MainPage} from "../pages";
+
 
 @IonicPage()
 @Component({
@@ -21,6 +23,7 @@ export class SignupPage {
   constructor(public navCtrl: NavController,
     public toastCtrl: ToastController,
     public accounts: AccountApiProvider,
+    public accountStorage: AccountStorage,
     public translateService: TranslateService) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
@@ -32,8 +35,15 @@ export class SignupPage {
 
   doSignup() {
     this.account.person.email = this.account.email;
-    this.accounts.create(this.account).then( (res: any) => {
-      this.navCtrl.push(MainPage);
+    this.accounts.create(this.account).then( (account: any) => {
+      this.accountStorage.setAccount(account).then(() => {
+        this.toastCtrl.create({
+          message: "U're now logged!",
+          duration: 3000,
+          position: 'top'
+        }).present();
+        this.navCtrl.push(MainPage);
+      });
     }, (err) => {
       this.toastCtrl.create({
         message: this.signupErrorString,

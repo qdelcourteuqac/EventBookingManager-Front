@@ -1,6 +1,6 @@
 {
   "ACCOUNT": {
-    "EMAIL": "E-mail",
+    "EMAIL": "Email",
     "PASSWORD": "Mot de passe"
   },
 
@@ -22,6 +22,8 @@
     "BUTTON": "Connexion",
     "ERROR": "Connexion impossible. Veuillez vérifier les informations de votre compte et réessayer."
   },
+
+  "LOGOUT": "Se déconnecter",
 
   "WELCOME_INTRO": "Bienvenue",
 
