@@ -2,7 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {TranslateService} from '@ngx-translate/core';
-import {Config, Nav, Platform} from 'ionic-angular';
+import {App, Config, Nav, Platform} from 'ionic-angular';
 
 import {FirstRunPage, MainPage} from '../pages/pages';
 import {Settings} from '../providers/providers';
@@ -35,12 +35,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
     { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Login', component: 'LoginPage' },
-    { title: 'Signup', component: 'SignupPage' },
     { title: 'Master Detail', component: 'ListMasterPage' },
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
@@ -51,6 +46,7 @@ export class MyApp {
   constructor(private translate: TranslateService,
               platform: Platform,
               settings: Settings,
+              public app: App,
               private config: Config,
               private statusBar: StatusBar,
               private splashScreen: SplashScreen,
@@ -104,6 +100,12 @@ export class MyApp {
       this.rootPage = (res == null) ? FirstRunPage : MainPage;
     }, (err) => {
       this.rootPage = FirstRunPage;
+    });
+  }
+
+  logout() {
+    this.accountStorage.logout().then(() => {
+      this.app.getRootNav().setRoot(FirstRunPage);
     });
   }
 }

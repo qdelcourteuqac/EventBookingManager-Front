@@ -26,21 +26,14 @@ export class AccountPage implements OnInit {
   loginAction() {
     let addModal = this.modalCtrl.create('LoginPage');
     addModal.present();
-    addModal.onDidDismiss(item => {
+    addModal.onDidDismiss(() => {
       this.refreshAccounts();
     });
   }
 
   refreshAccounts() {
-    this.accounts.retrieve().then((res: any) => {
-      this.currentAccounts = res;
-      this.toastCtrl.create({
-        message: "Accounts were successfully retrieved !",
-        duration: 3000,
-        position: 'top'
-      }).present();
-    }, (err) => {
-      console.warn(err);
+    this.accounts.retrieve().then((result: any) => {
+      this.currentAccounts = result;
     });
   }
 

@@ -13,13 +13,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item *ngFor="let event of currentEvents">
-      <h2>{{event.name}}</h2>
-
-      <ion-buttons end>
-        <button ion-button icon-only (click)="deleteEvent(event)">
-          <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-buttons>
+      <ion-icon name="leaf" item-start></ion-icon>
+      <p>{{ event.name }}</p>
+      <button ion-button icon-only (click)="deleteEvent(event)" item-end>
+        <ion-icon name="trash"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
 </ion-content>

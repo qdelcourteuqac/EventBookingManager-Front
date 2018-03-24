@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {App, IonicPage, NavController, ToastController} from 'ionic-angular';
+import {App, IonicPage, NavController} from 'ionic-angular';
 
 import {Account} from "../../models/account";
 import {AccountStorage} from "../../providers/account/account-storage";
@@ -16,7 +16,6 @@ export class ProfilePage implements OnInit {
 
   constructor(public app: App,
               public navCtrl: NavController,
-              public toastCtrl: ToastController,
               public accountStorage: AccountStorage) {
   }
 
@@ -28,11 +27,6 @@ export class ProfilePage implements OnInit {
 
   logout() {
     this.accountStorage.logout().then(() => {
-      this.toastCtrl.create({
-        message: "U're now logout!",
-        duration: 3000,
-        position: 'top'
-      }).present();
       this.app.getRootNav().setRoot(FirstRunPage);
     });
   }

@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Account} from "../../models/account";
 import {Storage} from "@ionic/storage";
+import {ToastController} from "ionic-angular";
 
 
 @Injectable()
@@ -8,19 +9,41 @@ export class AccountStorage {
 
   accountKey: string = "ACCOUNT";
 
-  constructor(public storage: Storage){
+  constructor(public storage: Storage, public toastCtrl: ToastController){
 
-  }
-
-  setAccount(account: Account) {
-    return this.storage.set(this.accountKey, account);
   }
 
   getAccount() {
     return this.storage.get(this.accountKey);
   }
 
+  setAccount(account: Account) {
+    return new Promise((resolve, reject) => {
+      this.storage.set(this.accountKey, account).then((result: any) => {
+        this.toastCtrl.create({
+          message: "U're logged in!",
+          duration: 3000,
+          position: 'top'
+        }).present();
+        resolve(result);
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
   logout() {
-    return this.storage.remove(this.accountKey);
+    return new Promise((resolve, reject) => {
+      this.storage.remove(this.accountKey).then((result: any) => {
+        this.toastCtrl.create({
+          message: "U're now logout!",
+          duration: 3000,
+          position: 'top'
+        }).present();
+        resolve(result);
+      }, (err) => {
+        reject(err);
+      })
+    });
   }
 }
