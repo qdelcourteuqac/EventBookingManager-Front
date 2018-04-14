@@ -5,6 +5,7 @@ import { User } from './user/user';
 import { EventApiProvider } from "./event/event";
 import { AccountApiProvider } from "./account/account";
 import { ReservationApiProvider } from "./reservation/reservation";
+import { ScanApiProvider } from "./scan/scan";
 import { AccountStorage } from "./account/account-storage";
 
 export {
@@ -15,5 +16,6 @@ export {
   EventApiProvider,
   AccountApiProvider,
   ReservationApiProvider,
-  AccountStorage
+  ScanApiProvider,
+  AccountStorage,
 };

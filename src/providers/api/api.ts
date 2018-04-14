@@ -1,17 +1,26 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {config} from "../../app/config";
 
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
 @Injectable()
 export class Api {
-  // to test on external device: update ip address if changed
-  //url: string = 'http://192.168.42.56:8080/api';
-  //to test on localhost
-  url: string = 'http://localhost:8080/api';
+  url: string = config.baseUrl;
 
   constructor(public http: HttpClient) {
+    this.verifyUrl();
+  }
+
+  verifyUrl() {
+    if (this.url.match(/^https?:\/\//)) {
+      if (this.url.match(/^http:\/\//)) {
+        this.url = this.url.substr(0, 7) + this.url.substr(7);
+      } else {
+        this.url = this.url.substr(0, 8) + this.url.substr(8);
+      }
+    }
   }
 
   get(endpoint: string, params?: any, reqOpts?: any) {

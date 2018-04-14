@@ -1,0 +1,122 @@
+page-scanner {
+
+  $purple: #98547e;
+  $orange: #fd5300;
+
+  $opacity: .9;
+
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+
+  a {
+    text-decoration-line: none;
+  }
+
+  ion-select {
+    max-width: 100%;
+  }
+
+  .login-background {
+    position: fixed;
+    width: 100%;
+  }
+
+  .right-f, .left-f {
+    position: fixed;
+  }
+
+  .right-f {
+    top: 0;
+    right: 0;
+    height: 450px;
+  }
+
+  .left-f {
+    left: 0;
+    bottom: -20%;
+    height: 500px;
+  }
+
+  .content-md {
+    background-color: initial;
+  }
+
+  ion-content {
+
+    .progress-row {
+      padding: 10px;
+      background-color: rgba(238, 238, 238, $opacity);
+
+      strong {
+        color: $purple;
+      }
+
+      ion-col {
+        padding: 0;
+      }
+
+      .progress-context {
+        margin: 5px 0 15px;
+      }
+
+      .progress-label {
+        color: $purple;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      .progress {
+        border: 1px solid $purple;
+        padding: 2px;
+        width: 100%;
+        height: 30px;
+
+        .progress-value {
+          background-color: $purple;
+          height: 100%;
+          transition: width .2s;
+        }
+      }
+    }
+
+    .resultBox {
+      width: 100%;
+      margin-top: 10px;
+      background-color: rgba(238, 238, 238, $opacity);
+
+      p {
+        color: black;
+      }
+
+      .item-md.item-block .item-inner {
+        border: none;
+      }
+
+      ion-icon {
+        font-size: 120px;
+        color: white;
+      }
+
+      &.pending ion-icon {
+        color: black;
+      }
+
+      &.error {
+        background-color: rgba(206, 33, 39, $opacity);
+      }
+
+      &.success {
+        background-color: rgba(0, 160, 36, $opacity);
+      }
+
+      &.error p, &.success p {
+        color: white;
+      }
+    }
+  }
+
+  ion-footer {
+    button {
+      background-color: $orange !important;
+    }
+  }
+}

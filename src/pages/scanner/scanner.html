@@ -1,0 +1,67 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Scanner</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-grid padding>
+    <ion-row class="progress-row" (tap)="updateProgressBar();" align-items-center>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            <p class="progress-context" *ngIf="progressContext.date && progressContext.errorMessage"
+               text-center>
+              <strong>{{ progressContext.errorMessage }}</strong>
+            </p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <p text-center class="progress-label">{{ progressLabel }}</p>
+          </ion-col>
+          <ion-col col-8>
+            <div class="progress">
+              <div class="progress-value" [style.width]="progressValue"></div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="resultBox {{ state }}">
+      <ion-col text-center text-wrap>
+        <div *ngIf="state === 'pending'">
+          <ion-icon ios="ios-qr-scanner-outline" md="ios-qr-scanner-outline"></ion-icon>
+          <p>En attente de scan</p>
+        </div>
+        <div *ngIf="state === 'loading'">
+          <div id="loader">
+            <div class="loader block"></div>
+            <p>Vérification en cours ...</p>
+          </div>
+        </div>
+        <div *ngIf="state === 'success'">
+          <p>Accès autorisé</p>
+          <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
+          <p>{{ scanResult.reservation.person.name }}</p>
+        </div>
+        <div *ngIf="state === 'error'">
+          <p>{{ scanResult.message }}</p>
+          <ion-icon ios="ios-alert" md="md-alert"></ion-icon>
+          <p *ngIf="scanResult.reservation">{{ scanResult.reservation.person.name }}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar position="bottom">
+    <button ion-button block full large (click)="scan()">
+      Scanner un Qr Code
+    </button>
+  </ion-toolbar>
+</ion-footer>

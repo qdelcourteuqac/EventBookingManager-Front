@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Event } from '../../models/event';
-import {Reservation} from "../../models/reservation";
 
 @IonicPage()
 @Component({
@@ -20,5 +19,11 @@ export class EventDetailPage {
     this.navCtrl.push('ReservationListPage', {
       event: event
     });
+  }
+
+  openScanner(event: Event) {
+    this.navCtrl.push('ScannerPage', {
+      event: event
+    })
   }
 }
