@@ -39,8 +39,13 @@ export class EventPage implements OnInit {
 
   refreshEvents() {
     this.events.retrieve().then((res: any) => {
-      console.log(res);
       this.currentEvents = res;
+    });
+  }
+
+  openEvent(event: Event) {
+    this.navCtrl.push('EventDetailPage', {
+      event: event
     });
   }
 

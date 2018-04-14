@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ event.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <img class="event-image" src="assets/img/default-img.gif" />
+
+  <div class="item-detail" padding>
+    <h2>{{event.name}}</h2>
+    <p>{{event.startAt | date: 'dd/MM/yyyy H:mm' }}</p>
+    <p *ngIf="event.endAt">{{ event.endAt | date: 'dd/MM/yyyy H:mm' }}</p>
+    <p *ngIf="event.maxPlaces > 0">{{ event.maxPlaces }} places maximum</p>
+    <p>{{ event.reservations.length }} réservations</p>
+
+    <button ion-button (click)="openReservationList(event)">Gérer les réservations</button>
+  </div>
+</ion-content>

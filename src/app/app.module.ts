@@ -17,6 +17,7 @@ import { MyApp } from './app.component';
 import {EventApiProvider} from "../providers/event/event";
 import {AccountApiProvider} from "../providers/account/account";
 import {AccountStorage} from "../providers/account/account-storage";
+import {ReservationApiProvider} from "../providers/reservation/reservation";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -67,6 +68,7 @@ export function provideSettings(storage: Storage) {
     Camera,
     EventApiProvider,
     AccountApiProvider,
+    ReservationApiProvider,
     AccountStorage,
     SplashScreen,
     StatusBar,

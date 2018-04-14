@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Ajouter une réservation</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="createReservation(event)" #registerForm="ngForm">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input type="text" placeholder="Prénom" [(ngModel)]="reservation.person.firstname" name="person.firstname" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="text" placeholder="Nom" [(ngModel)]="reservation.person.lastname" name="person.lastname" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Date de réservation</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="reservation.reservedAt" name="reservedAt" required></ion-datetime>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="signup-col">
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Créer</button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

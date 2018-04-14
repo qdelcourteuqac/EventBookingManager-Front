@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Réservations de l'évènement {{ event.name }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addReservation()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let reservation of reservationsList">
+      <ion-icon name="leaf" item-start></ion-icon>
+      <p>{{ reservation.person.firstname }}  {{ reservation.person.lastname }}</p>
+
+      <button ion-button icon-only (click)="deleteReservation(reservation)" item-end>
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

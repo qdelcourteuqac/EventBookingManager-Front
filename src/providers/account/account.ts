@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Account } from '../../models/account';
 import { Api } from '../api/api';
 import {ToastController} from "ionic-angular";
-import {MainPage} from "../../pages/pages";
 
 @Injectable()
 export class AccountApiProvider {

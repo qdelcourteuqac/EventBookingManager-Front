@@ -12,7 +12,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let event of currentEvents">
+    <ion-item *ngFor="let event of currentEvents" (click)="openEvent(event)">
       <ion-icon name="leaf" item-start></ion-icon>
       <p>{{ event.name }}</p>
       <button ion-button icon-only (click)="deleteEvent(event)" item-end>

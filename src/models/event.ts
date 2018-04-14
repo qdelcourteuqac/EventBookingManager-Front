@@ -1,4 +1,5 @@
 import {DateTime} from "ionic-angular";
+import {Reservation} from "./reservation";
 
 export class Event {
   id: number;
@@ -6,4 +7,6 @@ export class Event {
   maxPlaces: number;
   startArt: DateTime;
   endAt: DateTime;
+
+  reservations: Reservation[];
 }
