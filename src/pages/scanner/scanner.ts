@@ -5,6 +5,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { config } from "../../app/config";
 import { ScanApiProvider } from "../../providers/scan/scan";
 import { Event } from '../../models/event';
+import { ScanResponse } from "../../models/scan";
 
 
 @IonicPage()
@@ -25,7 +26,7 @@ export class ScannerPage implements OnInit {
   progressLabel: string;
   progressValue: any;
 
-  scanResult: object;
+  scanResponse: ScanResponse;
 
   event: Event;
 
@@ -51,12 +52,12 @@ export class ScannerPage implements OnInit {
     this.scanner.scan(config.scannerOptions).then((result) => {
       if (!result.cancelled) {
         this.state = ScannerPage.STATUS_LOADING;
-        this.scanProvider.scanQrCode(result.text).then((response: any) => {
-          this.scanResult = response;
+        this.scanProvider.scanQrCode(result.text).then((response: ScanResponse) => {
+          this.scanResponse = response;
           this.state = ScannerPage.STATUS_SUCCESS;
           this.updateProgressBar();
-        }).catch((error) => {
-          this.scanResult = error;
+        }).catch((error: ScanResponse) => {
+          this.scanResponse = error;
           this.state = ScannerPage.STATUS_ERROR;
         });
       }

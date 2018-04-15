@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 
 import {Reservation} from "../../models/reservation";
@@ -11,7 +11,7 @@ import {ReservationApiProvider} from "../../providers/reservation/reservation";
   selector: 'page-reservation-list',
   templateUrl: 'reservation-list.html',
 })
-export class ReservationListPage {
+export class ReservationListPage implements OnInit {
 
   event: Event;
   reservationsList: Reservation[];
@@ -22,6 +22,10 @@ export class ReservationListPage {
               public reservations: ReservationApiProvider) {
     this.event = this.navParams.get('event');
     this.reservationsList = this.event.reservations;
+  }
+
+  ngOnInit() {
+    this.refreshReservations();
   }
 
   addReservation() {
@@ -39,11 +43,9 @@ export class ReservationListPage {
   }
 
   refreshReservations() {
-    /*
-    this.reservations.retrieve().then((res: any) => {
+    this.reservations.retrieveByEvent(this.event).then((res: any) => {
       this.reservationsList = res;
     });
-    */
   }
 
 }

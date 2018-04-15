@@ -20,6 +20,7 @@ import {AccountStorage} from "../providers/account/account-storage";
 import {ReservationApiProvider} from "../providers/reservation/reservation";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {ScanApiProvider} from "../providers/scan/scan";
+import {PersonApiProvider} from "../providers/person/person";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -73,6 +74,7 @@ export function provideSettings(storage: Storage) {
     AccountApiProvider,
     ReservationApiProvider,
     ScanApiProvider,
+    PersonApiProvider,
     AccountStorage,
     SplashScreen,
     StatusBar,

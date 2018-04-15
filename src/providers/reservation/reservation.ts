@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Reservation } from '../../models/reservation';
 import { Api } from '../api/api';
 import {ToastController} from "ionic-angular";
+import { Event } from "../../models/event";
 
 @Injectable()
 export class ReservationApiProvider {
@@ -20,6 +21,21 @@ export class ReservationApiProvider {
   retrieve() {
     return new Promise((resolve, reject) => {
       this.api.get(this.endpoint).subscribe((value: any) => {
+        this.toastCtrl.create({
+          message: "Reservations were successfully retrieved !",
+          duration: 3000,
+          position: 'top'
+        }).present();
+        resolve(value);
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
+  retrieveByEvent(event: Event) {
+    return new Promise((resolve, reject) => {
+      this.api.get("event/reservations/"+event.id).subscribe((value: any) => {
         this.toastCtrl.create({
           message: "Reservations were successfully retrieved !",
           duration: 3000,
@@ -51,4 +67,20 @@ export class ReservationApiProvider {
       });
     });
   }
+
+  delete(reservation: Reservation) {
+    return new Promise((resolve, reject) => {
+      this.api.delete('reservation/'+reservation.id).subscribe((value: any) => {
+        this.toastCtrl.create({
+          message: "Reservation for '"+ reservation.person.name +"' is successfully deleted !",
+          duration: 3000,
+          position: 'top'
+        }).present();
+        resolve(value);
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
 }

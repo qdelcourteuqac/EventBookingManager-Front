@@ -46,12 +46,12 @@
         <div *ngIf="state === 'success'">
           <p>Accès autorisé</p>
           <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
-          <p>{{ scanResult.reservation.person.name }}</p>
+          <p *ngIf="scanResponse.scan">{{ scanResponse.personName }}</p>
         </div>
         <div *ngIf="state === 'error'">
-          <p>{{ scanResult.message }}</p>
+          <p>{{ scanResponse.message }}</p>
           <ion-icon ios="ios-alert" md="md-alert"></ion-icon>
-          <p *ngIf="scanResult.reservation">{{ scanResult.reservation.person.name }}</p>
+          <p *ngIf="scanResponse.scan">{{ scanResponse.personName }}</p>
         </div>
       </ion-col>
     </ion-row>

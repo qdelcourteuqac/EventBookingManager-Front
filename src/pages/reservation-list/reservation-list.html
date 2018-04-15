@@ -2,7 +2,7 @@
 
   <ion-navbar>
     <ion-title>Réservations de l'évènement {{ event.name }}</ion-title>
-    <ion-buttons end>
+    <ion-buttons *ngIf="reservationsList.length < event.maxPlaces" end>
       <button ion-button icon-only (click)="addReservation()">
         <ion-icon name="add"></ion-icon>
       </button>

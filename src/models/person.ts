@@ -4,5 +4,9 @@ export class Person {
   lastname: string;
   email: string;
   phoneNumber: string;
-  birthdate: any
+  birthdate: any;
+
+  get name() {
+    return this.firstname + " " + this.lastname;
+  }
 }
