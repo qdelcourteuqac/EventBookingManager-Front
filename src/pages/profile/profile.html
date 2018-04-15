@@ -13,7 +13,7 @@
   <ul>
     <li *ngIf="account.email">{{ 'ACCOUNT.EMAIL' | translate }} : {{ account.email }}</li>
     <li *ngIf="account.person.phoneNumber">{{ 'PERSON.PHONENUMBER' | translate }} : {{ account.person.phoneNumber }}</li>
-    <li *ngIf="account.person.birthdate">{{ 'PERSON.BIRTHDATE' | translate }} : {{ account.person.birthdate }}</li>
+    <li *ngIf="account.person.birthdate">{{ 'PERSON.BIRTHDATE' | translate }} : {{ account.person.birthdate | date: 'dd/MM/yyyy H:mm' }}</li>
   </ul>
   <button ion-button (click)="logout()">{{ 'LOGOUT' | translate }}</button>
 </ion-content>

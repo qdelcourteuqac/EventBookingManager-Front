@@ -39,13 +39,22 @@ export class ReservationListPage implements OnInit {
   }
 
   deleteReservation(reservation: Reservation) {
-    this.refreshReservations();
+    this.reservations.delete(reservation).then(() => {
+      this.refreshReservations();
+    });
   }
 
   refreshReservations() {
     this.reservations.retrieveByEvent(this.event).then((res: any) => {
       this.reservationsList = res;
     });
+  }
+
+  openReservation(reservation: Reservation) {
+    let modal = this.modalCtrl.create('ReservationDetailPage', {
+      reservation: reservation
+    });
+    modal.present();
   }
 
 }

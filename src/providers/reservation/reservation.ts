@@ -72,7 +72,7 @@ export class ReservationApiProvider {
     return new Promise((resolve, reject) => {
       this.api.delete('reservation/'+reservation.id).subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Reservation for '"+ reservation.person.name +"' is successfully deleted !",
+          message: "Reservation for '"+ reservation.person.firstname + " " + reservation.person.lastname +"' is successfully deleted !",
           duration: 3000,
           position: 'top'
         }).present();
