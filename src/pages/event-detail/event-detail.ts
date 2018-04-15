@@ -1,18 +1,31 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicPage, ModalController, NavController, NavParams, Platform} from 'ionic-angular';
 
 import { Event } from '../../models/event';
+import {AccountStorage} from "../../providers/account/account-storage";
 
 @IonicPage()
 @Component({
   selector: 'page-event-detail',
-  templateUrl: 'event-detail.html',
+  templateUrl: 'event-detail.html'
 })
-export class EventDetailPage {
+export class EventDetailPage implements OnInit {
   event: Event;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  isLogged: boolean;
+
+  constructor(public navCtrl: NavController,
+              public modalCtrl: ModalController,
+              public platform: Platform,
+              public navParams: NavParams,
+              public accountStorage: AccountStorage) {
     this.event = navParams.get('event') || new Event();
+  }
+
+  ngOnInit() {
+    this.accountStorage.isLogged().then((response: any) => {
+      this.isLogged = response;
+    });
   }
 
   openReservationList(event: Event) {

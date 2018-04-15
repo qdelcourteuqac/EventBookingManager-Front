@@ -12,11 +12,25 @@ export class EventApiProvider {
   constructor(public api: Api, public toastCtrl: ToastController) { }
 
   query(params?: any) {
-    return this.api.get('event', params);
+    return this.api.get('event', params).toPromise();
   }
 
   add(item: Event) {
     return this.api.post('event', item).toPromise();
+  }
+
+  search(name: string) {
+    let parameters = {
+      name: name
+    };
+
+    return new Promise( ((resolve, reject) => {
+      this.api.get('event/search', parameters).subscribe( (response: any) => {
+        resolve(response);
+      }, (err) =>  {
+        reject(err);
+      });
+    }));
   }
 
   retrieve() {

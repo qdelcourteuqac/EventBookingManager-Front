@@ -17,7 +17,14 @@
     <p *ngIf="event.maxPlaces > 0">{{ event.maxPlaces }} places maximum</p>
     <p>{{ event.reservations.length }} réservations</p>
 
-    <button ion-button (click)="openReservationList(event)">Gérer les réservations</button>
-    <button ion-button *ngIf="event.reservations.length > 0" (click)="openScanner(event)">Scan Code</button>
+    <progressbar [max]="event.maxPlaces" [value]="event.reservations.length"></progressbar>
+
+    <span *ngIf="isLogged">
+      <button ion-button (click)="openReservationList(event)">Gérer les réservations</button>
+      <button ion-button *ngIf="event.reservations.length > 0" (click)="openScanner(event)">Scan Code</button>
+    </span>
+    <span *ngIf="!isLogged">
+      <button ion-button (click)="openRegister()">S'inscrire</button>
+    </span>
   </div>
 </ion-content>

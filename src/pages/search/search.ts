@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Item } from '../../models/item';
-import { Items } from '../../providers/providers';
+import { Event } from '../../models/event';
+import {EventApiProvider} from "../../providers/event/event";
 
 @IonicPage()
 @Component({
@@ -11,30 +11,28 @@ import { Items } from '../../providers/providers';
 })
 export class SearchPage {
 
-  currentItems: any = [];
+  events: Event[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public items: Items) { }
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public eventProvider: EventApiProvider) { }
 
-  /**
-   * Perform a service for the proper items.
-   */
   getItems(ev) {
     let val = ev.target.value;
     if (!val || !val.trim()) {
-      this.currentItems = [];
+      this.events = [];
       return;
     }
-    this.currentItems = this.items.query({
-      name: val
+
+    this.eventProvider.search(val).then( (response: Event[]) => {
+      this.events = response;
+    }, (err) => {
     });
   }
 
-  /**
-   * Navigate to the detail page for this item.
-   */
-  openItem(item: Item) {
-    this.navCtrl.push('ItemDetailPage', {
-      item: item
+  openItem(event: Event) {
+    this.navCtrl.push('EventDetailPage', {
+      event: event
     });
   }
 

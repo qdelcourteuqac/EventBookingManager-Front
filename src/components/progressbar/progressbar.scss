@@ -1,0 +1,24 @@
+progressbar {
+
+  $color: #95547e;
+
+  .progress-label {
+    color: $color;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+  .progress {
+    border: 1px solid $color;
+    padding: 2px;
+    width: 100%;
+    height: 30px;
+
+    .progress-value {
+      background-color: $color;
+      height: 100%;
+      transition: width .2s;
+    }
+  }
+}
+

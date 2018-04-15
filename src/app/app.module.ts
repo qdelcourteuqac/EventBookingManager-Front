@@ -21,6 +21,8 @@ import {ReservationApiProvider} from "../providers/reservation/reservation";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {ScanApiProvider} from "../providers/scan/scan";
 import {PersonApiProvider} from "../providers/person/person";
+import {ProgressbarComponent} from "../components/progressbar/progressbar";
+import {ComponentsModule} from "../components/components.module";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.

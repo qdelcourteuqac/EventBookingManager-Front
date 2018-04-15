@@ -1,0 +1,18 @@
+<ion-row *ngIf="full">
+  <ion-col col-4>
+    <p text-center *ngIf="full" class="progress-label">{{ label }}</p>
+  </ion-col>
+  <ion-col col-8>
+    <div class="progress">
+      <div class="progress-value" [style.width]="cssAttrWidth"></div>
+    </div>
+  </ion-col>
+</ion-row>
+
+<ion-row *ngIf="!full">
+  <ion-col col-12>
+    <div class="progress">
+      <div class="progress-value" [style.width]="cssAttrWidth"></div>
+    </div>
+  </ion-col>
+</ion-row>

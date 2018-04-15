@@ -17,4 +17,8 @@ export class WelcomePage {
   signup() {
     this.navCtrl.push('SignupPage');
   }
+
+  anonymous() {
+    this.navCtrl.push('SearchPage');
+  }
 }

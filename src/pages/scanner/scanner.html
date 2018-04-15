@@ -18,16 +18,7 @@
             </p>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-4>
-            <p text-center class="progress-label">{{ progressLabel }}</p>
-          </ion-col>
-          <ion-col col-8>
-            <div class="progress">
-              <div class="progress-value" [style.width]="progressValue"></div>
-            </div>
-          </ion-col>
-        </ion-row>
+        <progressbar [max]="max" [value]="value" [full]="true"></progressbar>
       </ion-col>
     </ion-row>
 

@@ -23,8 +23,9 @@ export class ScannerPage implements OnInit {
   state: string; // pending, loading, success, error
 
   progressContext: object;
-  progressLabel: string;
-  progressValue: any;
+
+  max: number;
+  value: number;
 
   scanResponse: ScanResponse;
 
@@ -40,8 +41,6 @@ export class ScannerPage implements OnInit {
   ngOnInit() {
     this.state = ScannerPage.STATUS_PENDING;
 
-    this.progressLabel = "0 / 0";
-    this.progressValue = "0%";
     this.progressContext = {};
 
     this.updateProgressBar();
@@ -66,10 +65,8 @@ export class ScannerPage implements OnInit {
 
   updateProgressBar() {
     this.scanProvider.getProgress(this.event).then( (response: any) => {
-      let total = response.totalOfAttendee;
-      let number = response.totalAlreadyScanned;
-      this.progressLabel = number + " / " + total;
-      this.progressValue = (total === 0) ? "0%" : ((number / total) * 100).toFixed(1) + "%";
+      this.max = response.totalOfAttendee;
+      this.value = response.totalAlreadyScanned;
     }, (err: any) => {
       this.progressContext = {
         errorMessage: err.message

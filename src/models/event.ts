@@ -5,7 +5,7 @@ export class Event {
   id: number;
   name: string;
   maxPlaces: number;
-  startArt: DateTime;
+  startAt: DateTime;
   endAt: DateTime;
 
   reservations: Reservation[];

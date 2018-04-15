@@ -21,7 +21,6 @@ export class LoginPage {
     public accounts: AccountApiProvider,
     public accountStorage: AccountStorage,
     public translateService: TranslateService) {
-
     this.account = new Account();
   }
 
@@ -32,6 +31,7 @@ export class LoginPage {
         this.closeModal();
         this.navCtrl.setRoot(MainPage);
       });
+    }, () => {
     });
   }
 

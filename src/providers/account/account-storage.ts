@@ -9,12 +9,20 @@ export class AccountStorage {
 
   accountKey: string = "ACCOUNT";
 
-  constructor(public storage: Storage, public toastCtrl: ToastController){
-
-  }
+  constructor(public storage: Storage, public toastCtrl: ToastController) {}
 
   getAccount() {
     return this.storage.get(this.accountKey);
+  }
+
+  isLogged() {
+    return new Promise((resolve, reject) => {
+      this.getAccount().then((response: any) => {
+        resolve(response != null);
+      }, () => {
+        reject(false);
+      });
+    });
   }
 
   setAccount(account: Account) {
