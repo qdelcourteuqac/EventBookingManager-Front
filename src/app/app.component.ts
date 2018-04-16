@@ -6,7 +6,7 @@ import {App, Config, Nav, Platform} from 'ionic-angular';
 
 import {FirstRunPage, MainPage} from '../pages/pages';
 import {Settings} from '../providers/providers';
-import {AccountStorage} from "../providers/account/account-storage";
+import {AuthService} from "../providers/auth/auth-service";
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -49,7 +49,7 @@ export class MyApp {
               private config: Config,
               private statusBar: StatusBar,
               private splashScreen: SplashScreen,
-              public accountStorage: AccountStorage) {
+              public authService: AuthService) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -95,15 +95,17 @@ export class MyApp {
 
   initRootPage() {
     // If a user is logged go to main page !
-    this.accountStorage.getAccount().then((res: any) => {
-      this.rootPage = (res == null) ? FirstRunPage : MainPage;
-    }, (err) => {
+    let account = this.authService.getAccount();
+
+    if (account == null) {
       this.rootPage = FirstRunPage;
-    });
+    } else {
+      this.rootPage = MainPage;
+    }
   }
 
   logout() {
-    this.accountStorage.logout().then(() => {
+    this.authService.logout().then(() => {
       this.app.getRootNav().setRoot(FirstRunPage);
     });
   }

@@ -24,7 +24,7 @@ export class PersonApiProvider {
     return new Promise((resolve, reject) => {
       this.api.get('person').subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Persons were successfully retrieved !",
+          message: "La liste des personne a été mise à jour !",
           duration: 3000,
           position: 'top'
         }).present();
@@ -39,7 +39,7 @@ export class PersonApiProvider {
     return new Promise((resolve, reject) => {
       this.api.delete('person/'+person.id).subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Person '"+ person.firstname + " " + person.lastname +"' is successfully deleted !",
+          message: "La personne '"+ person.firstname + " " + person.lastname +"' a été supprimée !",
           duration: 3000,
           position: 'top'
         }).present();

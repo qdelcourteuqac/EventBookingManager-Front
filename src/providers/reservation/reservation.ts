@@ -22,7 +22,7 @@ export class ReservationApiProvider {
     return new Promise((resolve, reject) => {
       this.api.get(this.endpoint).subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Reservations were successfully retrieved !",
+          message: "La liste des réservations a été mise à jour !",
           duration: 3000,
           position: 'top'
         }).present();
@@ -37,7 +37,7 @@ export class ReservationApiProvider {
     return new Promise((resolve, reject) => {
       this.api.get("event/reservations/"+event.id).subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Reservations were successfully retrieved !",
+          message: "La liste des réservations a été mise à jour !",
           duration: 3000,
           position: 'top'
         }).present();
@@ -52,14 +52,14 @@ export class ReservationApiProvider {
     return new Promise((resolve, reject) => {
       this.api.post(this.endpoint, reservation).subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Success! Reservation created!",
+          message: "Succès! Reservation créée!",
           duration: 3000,
           position: 'top'
         }).present();
         resolve(value);
       }, (err) => {
         this.toastCtrl.create({
-          message: "Error : Impossible to create a reservation",
+          message: "Erreur : Impossible de créer la réservation",
           duration: 3000,
           position: 'top'
         }).present();
@@ -72,7 +72,7 @@ export class ReservationApiProvider {
     return new Promise((resolve, reject) => {
       this.api.delete('reservation/'+reservation.id).subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Reservation for '"+ reservation.person.firstname + " " + reservation.person.lastname +"' is successfully deleted !",
+          message: "La réservation pour '"+ reservation.person.firstname + " " + reservation.person.lastname +"' a été supprimée !",
           duration: 3000,
           position: 'top'
         }).present();

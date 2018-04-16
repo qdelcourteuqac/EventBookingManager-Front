@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {App, IonicPage, NavController} from 'ionic-angular';
 
 import {Account} from "../../models/account";
-import {AccountStorage} from "../../providers/account/account-storage";
 import {FirstRunPage} from "../pages";
+import {AuthService} from "../../providers/auth/auth-service";
 
 @IonicPage()
 @Component({
@@ -16,17 +16,15 @@ export class ProfilePage implements OnInit {
 
   constructor(public app: App,
               public navCtrl: NavController,
-              public accountStorage: AccountStorage) {
+              public authService: AuthService) {
   }
 
   ngOnInit() {
-    this.accountStorage.getAccount().then((result: any) => {
-      this.account = result;
-    });
+    this.account = this.authService.getAccount();
   }
 
   logout() {
-    this.accountStorage.logout().then(() => {
+    this.authService.logout().then(() => {
       this.app.getRootNav().setRoot(FirstRunPage);
     });
   }

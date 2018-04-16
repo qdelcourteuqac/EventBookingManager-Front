@@ -34,7 +34,7 @@ export class AccountApiProvider {
     return new Promise((resolve, reject) => {
       this.api.get('account').subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Accounts were successfully retrieved !",
+          message: "La liste des comptes ont été mise à jour !",
           duration: 3000,
           position: 'top'
         }).present();
@@ -49,14 +49,14 @@ export class AccountApiProvider {
     return new Promise((resolve, reject) => {
       this.api.post('account', account).subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Success! Account created!",
+          message: "Succès! Le compte a été créé !",
           duration: 3000,
           position: 'top'
         }).present();
         resolve(value);
       }, (err) => {
         this.toastCtrl.create({
-          message: "Error : Impossible to create an account",
+          message: "Erreur : Impossible de créer le compte",
           duration: 3000,
           position: 'top'
         }).present();

@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
@@ -9,20 +9,17 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { Items } from '../mocks/providers/items';
-import { Settings } from '../providers/providers';
-import { User } from '../providers/providers';
-import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
+import { Settings } from '../providers/providers';
+import { Api } from '../providers/api/api';
 import {EventApiProvider} from "../providers/event/event";
 import {AccountApiProvider} from "../providers/account/account";
-import {AccountStorage} from "../providers/account/account-storage";
 import {ReservationApiProvider} from "../providers/reservation/reservation";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {ScanApiProvider} from "../providers/scan/scan";
 import {PersonApiProvider} from "../providers/person/person";
-import {ProgressbarComponent} from "../components/progressbar/progressbar";
-import {ComponentsModule} from "../components/components.module";
+import {TokenInterceptor} from "../providers/account/token-interceptor";
+import {AuthService} from "../providers/auth/auth-service";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -68,8 +65,6 @@ export function provideSettings(storage: Storage) {
   ],
   providers: [
     Api,
-    Items,
-    User,
     Camera,
     BarcodeScanner,
     EventApiProvider,
@@ -77,12 +72,17 @@ export function provideSettings(storage: Storage) {
     ReservationApiProvider,
     ScanApiProvider,
     PersonApiProvider,
-    AccountStorage,
+    AuthService,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ]
 })
 export class AppModule { }

@@ -4,8 +4,8 @@ import {IonicPage, NavController, ViewController} from 'ionic-angular';
 
 import {Account} from '../../models/account';
 import {AccountApiProvider} from "../../providers/account/account";
-import {AccountStorage} from "../../providers/account/account-storage";
 import {MainPage} from "../pages";
+import {AuthService} from "../../providers/auth/auth-service";
 
 @IonicPage()
 @Component({
@@ -19,23 +19,21 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public viewCtrl: ViewController,
     public accounts: AccountApiProvider,
-    public accountStorage: AccountStorage,
+    public authService: AuthService,
     public translateService: TranslateService) {
     this.account = new Account();
   }
 
   doLogin() {
-    this.accounts.authenticate(this.account).then((value: any) => {
-      let authAccount: Account = value;
-      this.accountStorage.setAccount(authAccount).then(() => {
-        this.closeModal();
-        this.navCtrl.setRoot(MainPage);
+    this.accounts.authenticate(this.account).then((response: any) => {
+      //this.authService.setToken(response.token);
+      this.authService.setAccount(response).then(() => {
+        this.viewCtrl.dismiss().then(() => {
+          this.navCtrl.setRoot(MainPage);
+        });
       });
     }, () => {
     });
   }
 
-  closeModal() {
-    this.viewCtrl.dismiss();
-  }
 }

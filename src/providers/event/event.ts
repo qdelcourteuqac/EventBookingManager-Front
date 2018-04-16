@@ -37,7 +37,7 @@ export class EventApiProvider {
     return new Promise((resolve, reject) => {
       this.api.get('event').subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Events were successfully retrieved !",
+          message: "La liste des évènements a été mise à jour !",
           duration: 3000,
           position: 'top'
         }).present();
@@ -52,7 +52,7 @@ export class EventApiProvider {
     return new Promise((resolve, reject) => {
       this.api.delete('event/'+event.id).subscribe((value: any) => {
         this.toastCtrl.create({
-          message: "Event '"+ event.name +"' is successfully deleted !",
+          message: "L'évènement '"+ event.name +"' a été supprimé !",
           duration: 3000,
           position: 'top'
         }).present();
