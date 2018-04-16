@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, MenuController, NavController} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -8,7 +8,9 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, public menuCtrl: MenuController) {
+    this.menuCtrl.swipeEnable(false);
+  }
 
   login() {
     this.navCtrl.push('LoginPage');

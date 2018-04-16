@@ -26,8 +26,7 @@ export class LoginPage {
 
   doLogin() {
     this.accounts.authenticate(this.account).then((response: any) => {
-      //this.authService.setToken(response.token);
-      this.authService.setAccount(response).then(() => {
+      this.authService.store(response.token).then(() => {
         this.viewCtrl.dismiss().then(() => {
           this.navCtrl.setRoot(MainPage);
         });

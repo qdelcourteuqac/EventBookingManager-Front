@@ -51,10 +51,9 @@ export class ReservationListPage implements OnInit {
   }
 
   openReservation(reservation: Reservation) {
-    let modal = this.modalCtrl.create('ReservationDetailPage', {
+    this.navCtrl.push('ReservationDetailPage', {
       reservation: reservation
     });
-    modal.present();
   }
 
 }

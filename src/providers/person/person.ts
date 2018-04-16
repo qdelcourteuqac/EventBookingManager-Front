@@ -20,6 +20,16 @@ export class PersonApiProvider {
     return this.api.post('person', person).toPromise();
   }
 
+  retrieveById(id) {
+    return new Promise((resolve, reject) => {
+      this.api.get('person/'+id).subscribe((person: any) => {
+        resolve(person);
+      }, (err) => {
+        reject(err);
+      });
+    });
+  }
+
   retrieve() {
     return new Promise((resolve, reject) => {
       this.api.get('person').subscribe((value: any) => {

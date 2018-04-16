@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding *ngIf="account">
-  <h2>
+  <h2 *ngIf="account.person">
     {{ account.person.firstname }} {{ account.person.lastname }}
   </h2>
   <ul>

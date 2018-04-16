@@ -4,6 +4,7 @@ import {App, IonicPage, NavController} from 'ionic-angular';
 import {Account} from "../../models/account";
 import {FirstRunPage} from "../pages";
 import {AuthService} from "../../providers/auth/auth-service";
+import {AccountApiProvider} from "../../providers/account/account";
 
 @IonicPage()
 @Component({
@@ -16,11 +17,15 @@ export class ProfilePage implements OnInit {
 
   constructor(public app: App,
               public navCtrl: NavController,
-              public authService: AuthService) {
+              public authService: AuthService,
+              public accountProvider: AccountApiProvider) {
   }
 
   ngOnInit() {
-    this.account = this.authService.getAccount();
+    let storeAccount = this.authService.getAccount();
+    this.accountProvider.retrieveById(storeAccount.id).then( (account: Account) => {
+      this.account = account;
+    });
   }
 
   logout() {

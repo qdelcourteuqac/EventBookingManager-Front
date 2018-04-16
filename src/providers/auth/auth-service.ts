@@ -59,4 +59,11 @@ export class AuthService {
     return tokenNotExpired(null, token);
   }
 
+  public store(object) {
+    return new Promise((resolve, reject) => {
+      this.setToken(object);
+      resolve();
+    });
+  }
+
 }

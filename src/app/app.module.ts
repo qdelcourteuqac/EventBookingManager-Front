@@ -36,7 +36,7 @@ export function provideSettings(storage: Storage) {
    */
   return new Settings(storage, {
     option1: true,
-    option2: 'Ionitron J. Framework',
+    option2: 'localhost:8080',
     option3: '3',
     option4: 'Hello'
   });
